@@ -16,6 +16,8 @@ TEST_ASSERT_EQUAL_STRING(const char* expected, const char* actual)
 TEST_ASSERT_NOT_EQUAL_STRING(const char* expected, const char* actual)
 TEST_ASSERT_NULL(void* pointer)
 TEST_ASSERT_EQUAL_POINTER(void* expected, void* actual)
+TEST_ASSERT_EQUAL_INT_ARRAY(int* expected, int* actual, int lengthExpected, int lengthActual)
+TEST_ASSERT_EQUAL_CHAR_ARRAY(char* expected, char* actual, int lengthExpected, int lengthActual)
 ```
 
 ## Test Macro
