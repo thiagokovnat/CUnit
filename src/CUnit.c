@@ -11,7 +11,6 @@ static int failure_count = 0;
 #define ANSI_COLOR_RED	"\x1b[1m\x1b[31m"
 #define ANSI_COLOR_X	"\x1b[1m\x1b[33m"
 
-
 void RUN_TEST(void (*test)()){
 	test();
 }
@@ -113,4 +112,41 @@ void CUNIT_ASSERT_NULL(void* pointer, const char* test, int line){
 		PRINT_SUCCESS(test, line);
 	else
 		PRINT_FAILURE(test, line);
+}
+
+
+void CUNIT_ASSERT_EQUAL_INT_ARRAY(int* expected, int* actual, int lengthExpected, int lengthActual, const char* test, int line){
+
+	if (lengthExpected != lengthActual){
+		PRINT_FAILURE(test, line);
+		return;
+	}
+
+	for (int i = 0; i < lengthActual; ++i){
+
+		if (expected[i] != actual[i]){
+			PRINT_FAILURE(test, line);
+			return;
+		}
+	}
+
+	PRINT_SUCCESS(test, line);
+}
+
+void CUNIT_ASSERT_EQUAL_CHAR_ARRAY(char* expected, char* actual, int lengthExpected, int lengthActual, const char* test, int line){
+
+	if (lengthExpected != lengthActual){
+		PRINT_FAILURE(test, line);
+		return;
+	}
+
+	for (int i = 0; i < lengthActual; ++i){
+
+		if (expected[i] != actual[i]){
+			PRINT_FAILURE(test, line);
+			return;
+		}
+	}
+
+	PRINT_SUCCESS(test, line);
 }

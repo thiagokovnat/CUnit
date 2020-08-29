@@ -7,6 +7,24 @@ Test(ConditionShouldReturnTrue){
 	TEST_ASSERT_TRUE(true);
 }
 
+Test(EqualArrays){
+
+	int array1[5] = {0, 1, 2, 3, 4};
+	int array2[5] = {0, 1, 3, 3, 4};
+
+	TEST_ASSERT_EQUAL_INT_ARRAY(array1, array2, 5, 5);
+
+}
+
+
+Test(EqualCharArrays){
+
+	char array1[3] = {'A', 'B', 'C'};
+	char array2[3] = {'A', 'C', 'D'};
+
+	TEST_ASSERT_EQUAL_CHAR_ARRAY(array1, array2, 5, 5);
+
+}
 
 Test(NumbersShouldNotBeEqual){
 
@@ -43,6 +61,8 @@ int main(){
 	RUN_TEST(NumbersShouldNotBeEqual);
 	RUN_TEST(NumberInRange);
 	RUN_TEST(EqualNullPointers);
+	RUN_TEST(EqualArrays);
+	RUN_TEST(EqualCharArrays);
 
 	TEST_PRINT_OVERALL();
 }
