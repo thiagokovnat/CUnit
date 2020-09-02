@@ -13,14 +13,28 @@
 #define TEST_ASSERT_EQUAL_POINTER(x, y)							CUNIT_ASSERT_EQUAL_POINTER(x, y, __func__, __LINE__)
 #define TEST_ASSERT_EQUAL_INT_ARRAY(x, y, z, j)					CUNIT_ASSERT_EQUAL_INT_ARRAY(x, y, z, j, __func__, __LINE__)
 #define TEST_ASSERT_EQUAL_CHAR_ARRAY(x, y, z, j)				CUNIT_ASSERT_EQUAL_CHAR_ARRAY(x, y, z, j, __func__, __LINE__)
-	
-
-
-
+#define TEST_ASSERT_EQUAL_STRING_ARRAY(x, y, z, j)				CUNIT_ASSERT_EQUAL_STRING_ARRAY(x, y, z, j, __func__, __LINE__)
 
 
 #define Test(name) 												void name()
+	
 
+typedef struct suit{
+
+	char* name;
+	void (*tests[256])(void);
+	int amountTest;
+
+}CUNIT_TEST_SUITE_T;
+
+
+void DESTROY_SUIT(CUNIT_TEST_SUITE_T* suit);
+
+CUNIT_TEST_SUITE_T* CREATE_SUIT(char* name);
+
+void RUN_SUIT(CUNIT_TEST_SUITE_T* suite);
+
+void ADD_TEST(CUNIT_TEST_SUITE_T* suite, void (*func)(void));
 
 void RUN_TEST(void (*test)());
 
@@ -45,6 +59,8 @@ void CUNIT_ASSERT_NULL(void* pointer, const char* test, int line);
 void CUNIT_ASSERT_EQUAL_INT_ARRAY(int* expected, int* actual, int lengthExpected, int lengthActual, const char* test, int line);
 
 void CUNIT_ASSERT_EQUAL_CHAR_ARRAY(char* expected, char* actual, int lengthExpected, int lengthActual, const char* test, int line);
+
+void CUNIT_ASSERT_EQUAL_STRING_ARRAY(char** expected, char** actual, int lengthExpected, int lengthActual, const char* test, int line);
 
 
 
